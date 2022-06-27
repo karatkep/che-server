@@ -15,7 +15,8 @@ import java.net.URL;
 
 /**
  * Dummy implementation of @{@link OAuthAuthenticator} used in the case if no Bitbucket Server
- * integration is configured.
+ * integration is configured, e.g. when a manually added token secret is present in the user
+ * namespace.
  */
 public class NoopOAuthAuthenticator extends OAuthAuthenticator {
   public NoopOAuthAuthenticator() {
