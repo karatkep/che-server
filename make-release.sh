@@ -4,21 +4,15 @@
 # build and push maven artifacts and docker images to Quay.io
 
 REGISTRY="quay.io"
-ORGANIZATION="eclipse"
+ORGANIZATION="karatkep"
 
  # KEEP RIGHT ORDER!!!
 DOCKER_FILES_LOCATIONS=(
-    che-server/dockerfiles/endpoint-watcher
-    che-server/dockerfiles/keycloak
-    che-server/dockerfiles/postgres
     che-server/dockerfiles/che
 )
 
 IMAGES_LIST=(
-    quay.io/eclipse/che-endpoint-watcher
-    quay.io/eclipse/che-keycloak
-    quay.io/eclipse/che-postgres
-    quay.io/eclipse/che-server
+    quay.io/karatkep/che-server
 )
 
 loadMvnSettingsGpgKey() {
@@ -396,15 +390,7 @@ updateImageTagsInCheServer() {
     git push origin ${BRANCH}
 }
 
-installMaven
-loadMvnSettingsGpgKey
-installDebDeps
-set -x
-setupGitconfig
 
-evaluateCheVariables
-
-checkoutProjects
 
 if [[ "${BUMP_NEXT_VERSION}" = "true" ]]; then
     bumpVersions
